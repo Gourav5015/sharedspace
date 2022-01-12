@@ -1,0 +1,35 @@
+{% extends "index.html" %}
+{% load static %}
+{% block title %}Sign Up{% endblock title %}
+{% block signupactive %}class="active"{% endblock signupactive %}
+{% block body %}
+       <container>
+     <div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img src="{% static 'download.jpg' %}" id="icon" alt="User Icon" />
+    </div>
+
+    <!-- Login Form -->
+    <form  id="form" method="POST" action="/signupconfirm/">
+{% csrf_token %}
+      <input type="hidden" id="name" class="fadeIn second" name="firstname" placeholder="first name" value={{firstname}}>
+      <input type="hidden" id="lastname" class="fadeIn second" name="lastname" placeholder="last name" value={{lastname}}>
+      <input type="hidden" id="username" class="fadeIn second" name="username" placeholder="username" value={{username}}>
+      <input type="hidden" id="email" class="fadeIn second" name="email" placeholder="email"value={{emailid}}>
+      <input type="hidden" id="password" class="fadeIn third" name="password" placeholder="password" value={{password}}>
+      <input type="hidden" id="confirmpassword" class="fadeIn third" name="cpassword" placeholder="confirm password" value={{cpassword}}>
+      <label for="passcode">please check your email {{emailid}}</label>
+      <input type="text" id="passcode" class="fadeIn second" name="passcode" placeholder="enter the pin" required>
+      <input type="submit" class="fadeIn fourth" value="submit">
+    </form>
+
+    <!-- Remind Passowrd -->
+  </div>
+</div>
+</container>    
+
+{% endblock body %}

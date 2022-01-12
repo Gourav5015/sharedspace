@@ -1,0 +1,35 @@
+{% extends "index.html" %}
+{% load static %}
+{% block title %}login{% endblock title %}
+{% block loginactive %}class="active"{% endblock loginactive %}
+{% block header %}
+{% endblock header %}
+{% block body %}
+       <container>
+     <div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img src="{% static 'download.jpg' %}" id="icon" alt="User Icon" />
+    </div>
+
+    <!-- Login Form -->
+    <form action="login/" method ="POST">
+{% csrf_token %}
+      <input type="text" id="login" class="fadeIn second" name="username" placeholder="login" required>
+      <input type="password" id="password" class="fadeIn third" name="name" placeholder="password" required>
+      <input type="submit" class="fadeIn fourth" value="Log In">
+    </form>
+
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+      <a class="underlineHover" href="/resetpassword/">Forgot Password?</a>
+    </div>
+
+  </div>
+</div>
+</container>    
+
+{% endblock body %}

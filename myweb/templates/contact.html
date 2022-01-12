@@ -1,0 +1,36 @@
+{% extends "index.html" %}
+{% load static %}
+{% block title %}Contact{% endblock title %}
+{% block contactusactive %}class="active"{% endblock contactusactive %}
+{% block header %}
+{% endblock header %}
+{% block body %}
+<h1 class="h1contact">Contact Us</h1>
+<form action="/contact/" method="POST">
+  {% csrf_token %}
+    <div class="container">
+    <div class="form-group">
+      <label for="exampleInputEmail1"> Email address</label>
+      <input type="email" class="form-control  pl-2" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Your Email" name='email'required>
+      <label for="exampleInputEmail1">Your issue</label>
+      <textarea class="form-control row-7" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Your querry" name='querry' required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</div>
+  </form>
+  <style>
+      form, input, label{
+    color:black !important;
+    width:100% !important;
+    background-color: white !important;
+    text-align: left !important;
+    border-radius: 10px;
+}
+#exampleInputEmail1{
+  border:2px solid black !important;
+}
+textarea {
+    height:80px;
+}
+  </style>
+{% endblock body %}

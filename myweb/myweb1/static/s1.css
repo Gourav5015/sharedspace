@@ -1,0 +1,94 @@
+body{
+background-image:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.5)),url(Website-Design-Background.jpg);
+background-position:center;
+background-size:cover;
+color:white;
+max-width:400%;
+}
+#nav-bar ul{
+padding:1px 2px;
+float:right;
+margin-top:-450px;
+color:white;
+}
+ul li {
+border:4px solid white;
+border-radius:10px;
+color:white;
+cursor:pointer;
+margin:3px;
+padding:10px 15px;
+font-size:20px;
+list-style:none;
+display:inline-block;
+}
+ul li:hover{
+padding:10px 15px;
+background-color:white;
+cursor:pointer
+transform:tranlate(30%);
+transition:all 0.5s ease;
+color:black;
+}
+.title{
+color:white;
+font-family:'algerian';
+font-size:40px;
+position:absolute;
+top:35%;
+left:35%;
+tramsform:tanslate(-50%,-50%);
+}
+.active{
+padding:10px 15px;
+background-color:white;
+color:black;
+}
+h3{
+color:white;
+font-family:'Palatino Linotype';
+font-size:25px;
+position:absolute;
+top:53%;
+left:37%;
+tramsform:tanslate(-50%,-50%);
+}
+#login{
+height:20%;
+width:50%;
+padding:100px,0px;
+background:transperent;;
+max-width:200px;
+margin-top:450px;
+margin-left:550px
+}
+.login-box input[type="text"],input[type="password"]{
+padding:100px,100px;
+width:100%;
+height:28%;
+color:white;
+font-size:20px;
+margin-bottom:10px;
+box-sizing:border-box;
+background-color:rgba(0,0,0,0);
+border:none;
+border-bottom:2px solid white;
+}
+.login-box input[type="submit"]{
+padding:100px,100px;
+width:100%;
+height:28%;
+}
+.login-box input[type="submit"]:hover{
+background:blue;
+color:white;
+}
+footer{
+font-size:25px;
+background:white;
+color:black;
+text-align:center;
+margin-top:45px;
+padding:10px,0px;
+font-family:'Roboto';
+ 

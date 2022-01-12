@@ -1,0 +1,25 @@
+{% extends "index.html" %}
+{% load static %}
+{% block title %}Delete Account{% endblock title %}
+{% block body %}
+<div class="container text-center">
+
+    
+    <h1>Delete Account</h1>
+    <p><b>All Your Account Data will be permanently deleted.Are you sure?</b></p>
+    <form method="post" action="/deleteaccount/">
+        {% csrf_token %}
+        <div class="container">
+        <input type="password" name="password" placeholder="password">
+    </div>
+    <button type="submit" class="btn btn-danger btn-sm mx-3">Delete</button>
+    <a href="/home/" type="button" role="button" class="btn btn-standard btn-sm mx-3">Cancel</a>
+    </form>
+<style>
+    h1{
+        font-size: 20px !important;
+    }
+</style>
+
+</div>
+{% endblock body %}

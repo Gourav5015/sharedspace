@@ -1,0 +1,28 @@
+{% load static %}
+<html>
+<head>
+<link href="{% static 'style.css' %}" type="text/css" rel=stylesheet>
+<title>home</title>
+</head>
+<body>
+
+<header>
+<div id="nav-bar">
+<ul>
+<li class="active"> menu</li>
+<li> home</li>
+<li> about</li>
+<li> contact us</li>
+</ul>
+</div>
+</header>
+<div class="title">
+<h1>welcome</h1>
+</div>
+<footer>
+copyright &copy; 2019 Gourav Agarwal
+</footer>
+{% block body %}
+{% endblock body %}
+</body>
+</html>

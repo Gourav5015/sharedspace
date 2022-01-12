@@ -1,0 +1,117 @@
+{% extends "index.html" %}
+{% load static %}
+{% block title %}Profile |{{profile.username}}{% endblock title %}
+{% block homeactive %}class="active"{% endblock homeactive %}
+{% block header %}
+
+{% endblock header %}
+{% block body %}
+<div class="container ">
+
+
+    <div class=" col-md-2 my-0 d-inline-block  ">
+        <img src=/media/{{profile.image}} alt="" class="img-rounded img-responsive image" height="230px" />
+    </div>
+
+    <div class=" col-md-10 w-50 my-3 profile d-inline-block">
+
+        <h4>{{profile.firstname |upper}} {{profile.lastname |upper}}
+            {% ifequal profile.verification 1 %}
+            <span class="badge badge-pill badge-primary small">Verified</span>
+            {% endifequal %}
+        </h4>
+        <b>Username :</b> {{profile.username}}
+        <p>
+            <i class="glyphicon glyphicon-envelope"></i> <b>Email:</b> {{profile.email}}
+            <br />
+            {% if profile.about %}
+            <i class="glyphicon glyphicon-envelope"></i> <b>About:</b> {{profile.about}}
+            {% endif %}
+    </div>
+
+</div>
+{% ifequal request.user.username profile.username %}
+<form action="/home/profile/{{request.user}}" method="POST" enctype="multipart/form-data">
+    <div class="container">
+        <div class="form-group"></div>
+    {% csrf_token %}
+            <label for="uploadimage">upload image</label>
+            <input type="file" class="form-control row-7" id="upload image" aria-describedby="emailHelp"
+                 name='image'  required>
+
+    {% ifequal  profile.about '' %}
+            <label for="About">About</label>
+            <textarea class="form-control row-7" id="About" aria-describedby="emailHelp"
+                placeholder="Please fill the about section" name='About' value={{profile.about}} required></textarea>
+<style>
+    form,
+    input,
+    label {
+        color: black !important;
+        width: 100% !important;
+        background-color: white !important;
+        text-align: left !important;
+        border-radius: 10px;
+    }
+
+    #exampleInputEmail1 {
+        border: 2px solid black !important;
+    }
+
+    textarea {
+        height: 80px;
+    }
+</style>
+{% endifequal %}
+
+<button type="submit" class="btn btn-primary">Submit</button>
+</div>
+</div>
+</form>
+{% endifequal %}
+
+<div class="container">
+    <h1 class="text-center ml-8 my-3">Post's</h1>
+</div>
+{% if posts %}
+{% for post in posts %}
+<div class="container my-2">
+    <div class="card w-100">
+        <div class="card-body">
+            <h5 class="card-title text-dark">{{post.title}}</h5>
+            <div class="preview">
+                <p class="card-text text-dark">{{post.content | truncatechars:500 | safe}}</p>
+            </div>
+            <a href="/allblogs/{{post.postslug}}" class="btn btn-primary my-3">Show more</a>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% else %}
+<div class="container text-center">
+    <h5> You have not posted anything yet</h5>
+</div>
+{% endif %}
+
+<script>
+    let previews = document.getElementsByClassName("preview");
+    console.log(previews);
+    Array.from(previews).forEach((element) => {
+        element.innerHTML = element.innerText;
+    });
+</script>
+<style>
+    .profile {
+        padding-left: 50px;
+    }
+
+    .image {
+        padding-left: 50px !important;
+        margin-top: 5px !important;
+    }
+    .small{
+        font-size: small !important;
+    }
+</style>
+
+{% endblock body %}

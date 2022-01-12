@@ -1,0 +1,75 @@
+
+{% extends "index.html" %}
+{% load static %}
+{% block title %}{{postshow.titlw}}{% endblock title %}
+{% block homeactive %}class="active"{% endblock homeactive %}
+{% block header %}
+
+{% endblock header %}
+{% block body %}
+<div class="container">
+    <div class="col-md-12 my-3">
+      {% ifequal postshow.author request.user.username %}
+      <button class=" option btn btn-none dropdown-toggle btn-lg pt-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Option
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <form action="/deletepost/" method="post">
+          {% csrf_token %}
+        <input type="hidden" name="slno" value="{{postshow.slno}}">
+        <button type="submit" class="btn delete btn-sm mx-3">Delete Post</button>
+      </form>
+      </div>
+      {% endifequal %}
+    </br>
+    <div class="container">
+        <h1 class="text-dark">{{postshow.title}}</h1>
+        </div>
+        <a href="/home/profile/{{postshow.user}}" class="textauthor"><h5 class="text-dark ">-by {{postshow.author | upper}}</h5></a>
+        <p class="text-dark width">{{postshow.content | safe }}</p>
+        </div>
+        <div>
+    <span class="badge text-dark mx-3">Posted {{postshow.timestamp}}</span> 
+    </div>
+    </div>
+    <div class="container">
+        <h4 class="mx-3 my-3">Comments ({{comments.count}})</h4>
+        {%  if not request.user.is_anonymous %}
+        <form action="/postcomment" method="POST">
+            {% csrf_token %}
+              <div class="form-group mx-3">
+                  <input type="hidden" name="postslno" value="{{postshow.slno}}"></input>
+                <textarea class="form-control row-7" id="comment" aria-describedby="emailHelp" placeholder="Your comment here" name='comment'required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary btn-sm mx-3">Submit</button>
+            </form>
+        
+        {% endif %}
+        {% for comment in comments %}
+            <div class="col-md-12 mx-2 my-3">
+               <b> {{comment.user}} :</b> {{comment.comment}} 
+               {% ifequal request.user comment.user %}
+               <form action="/deletecomment" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger btn-sm mx-3">Delete</button>
+                  <div class="form-group mx-3">
+                    <input type="hidden" name="postslno" value="{{postshow.slno}}"></input>
+                      <input type="hidden" name="delete" value="{{comment.idno}}"></input>
+               
+               </div>
+                  </form>
+                {% endifequal %}
+            </div>
+        {% endfor %}
+    </div>
+<style>
+  .option{
+    color:black !important;
+    float: right !important;
+  }
+  .delete{
+    background-color: transparent !important;
+    color:white !important;
+  }
+</style>
+{% endblock body %}

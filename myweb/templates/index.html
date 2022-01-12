@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+{% load static %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet "  href= "{% static 'style.css' %}">
+    <title>{% block title %}{% endblock title %}</title>
+  </head>
+  <body>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+<header>
+<div id="nav-bar" >
+  <div class="name">
+    <a href="/home/"><h2 class="text-light d-inline-block"></8>
+    SharedSpace
+  </h2>
+</div>
+<ul>
+<a href="/home"><li {% block homeactive %}{% endblock homeactive %}>HOME</li></a>
+<a href="/aboutus/"><li {% block aboutactive %}{% endblock aboutactive %}>ABOUT US</li></a>
+<a href="/contact/"><li {% block contactusactive %}{% endblock contactusactive %}>CONTACT US</li></a>
+{%  if request.user.is_anonymous %}
+<a href="/first/"><li {% block loginactive %}{% endblock loginactive %}>LOGIN</li></a>
+<a href="/signup/"><li {% block signupactive %}{% endblock signupactive %} >SIGNUP</li></a>
+{% else %}
+<li class="welcome pl-0 pr-0 "></li><button class=" buttonc btn btn-none dropdown-toggle btn-lg pt-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+ WELCOME {{request.user.username| upper }}
+</button>
+</li>
+<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+  <a class="dropdown-item" href="/home/profile/{{request.user}}">My Profile</a>
+  <a class="dropdown-item" href="/home/Addpost/">Add post</a>
+  <a class="dropdown-item" href="/changepassword/">Change Password</a>
+  <a class="dropdown-item" href="/deleteaccount/">Delete Account</a>
+  <a class="dropdown-item" href="/log/">Logout</a>
+</div>
+{% endif %}
+
+
+{% block header %}
+{% endblock header %}
+</ul>
+</div>
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }} mb-0 alert-dismissible fade show" role="alert">
+  <strong>Message: </strong> {{ message }}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    $('.alert').alert()
+  })
+  $(function() {
+    $('.btn').click(function () {
+      $(".submenu").slideToggle(500)
+    })
+  })
+
+</script>
+{% endfor %}
+{% endif %}
+</header>
+{% block body %}
+{% endblock body %}
+{% block js %}
+{% endblock js %}
+<footer class="my-3">gourav agarwal</footer>
+  </body>
+</html>

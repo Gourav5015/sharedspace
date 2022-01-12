@@ -1,0 +1,56 @@
+{% extends "index.html" %}
+{% load static %}
+{% block title %}Sign Up{% endblock title %}
+{% block signupactive %}class="active"{% endblock signupactive %}
+{% block body %}
+       <container>
+     <div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img src="{% static 'download.jpg' %}" id="icon" alt="User Icon" />
+    </div>
+
+    <!-- Login Form -->
+    <form  id="form" method="POST" action="/signup/">
+{% csrf_token %}
+      <input type="text" id="name" class="fadeIn second" name="firstname" placeholder="first name" required>
+      <input type="text" id="lastname" class="fadeIn second" name="lastname" placeholder="last name" required>
+      <input type="text" id="username" class="fadeIn second" name="username" placeholder="username" required>
+      <input type= "email" id="email" class="fadeIn second" name="email" placeholder="email" required>
+      <input type="password" id="password" class="fadeIn third" name="password" placeholder="password" required>
+      <input type="password" id="confirmpassword" class="fadeIn third" name="cpassword" placeholder="confirm password" required>
+      <input type="submit" class="fadeIn fourth" value="next">
+    </form>
+
+    <!-- Remind Passowrd -->
+  </div>
+</div>
+</container>    
+<script>
+  
+    var f =document.getElementById("form");
+    f.addEventListener('submit',(event)=> {
+        evemt.preventDefault();
+        let password=document.getElementById("password");
+        let pass=password.value;
+
+        let confirmpassword=document.getElementById("confirmpassword");
+        let cpass=confirmpassword.value;
+        console.log(password);
+        console.log(confirmpassword);
+        if (pass==cpass){
+            alert("success");
+            f.submit();
+        }
+        else{
+            
+        }
+        
+
+    }
+    )
+</script>
+{% endblock body %}

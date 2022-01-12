@@ -1,0 +1,40 @@
+{% extends "index.html" %}
+{% load static %}
+{% block title %}Add Pos{% endblock title %}
+{% block contactusactive %}class="active"{% endblock contactusactive %}
+{% block header %}
+{% endblock header %}
+{% block body %}
+<script src="{% static 'ckeditor.js' %}"></script>
+<h1 class="h1contact">Add Post</h1>
+<form action="/home/Addpost/" method="POST">
+  {% csrf_token %}
+    <div class="container">
+    <div class="form-group">
+      <label for="title"> Title</label>
+      <input type="text" class="form-control  pl-2" id="title" aria-describedby="emailHelp" placeholder="Add Title" name='title'>
+      <label for="content">Add Content</label>
+      <textarea class="form-control row-7" id="content" aria-describedby="emailHelp" placeholder="Write Content" name='content' required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Post</button>
+</div>
+  </form>
+  <style>
+      form, input, label{
+    color:black !important;
+    width:100% !important;
+    background-color: white !important;
+    text-align: left !important;
+    border-radius: 10px;
+}
+#exampleInputEmail1{
+  border:2px solid black !important;
+}
+textarea {
+    height:80px;
+}
+  </style>
+  <script>
+    CKEDITOR.replace("content");
+  </script>
+{% endblock body %}

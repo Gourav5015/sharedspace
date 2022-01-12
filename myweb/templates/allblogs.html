@@ -1,0 +1,38 @@
+{% extends "index.html" %}
+{% load static %}
+{% block title %}Add Blogs{% endblock title %}
+{% block homeactive %}class="active"{% endblock homeactive %}
+{% block header %}
+
+{% endblock header %}
+{% block body %}
+
+    <div class="container">
+        <h1 class="text-left ml-2 my-3">All Blogs</h1>
+    </div>
+    {% for post in posts %}
+    <div class="container my-2">
+        <div class="card w-75">
+            <div class="card-body">
+              <h5 class="card-title text-dark">{{post.title}}</h5>
+
+               <p class="card-text text-dark " >
+                <div class="html">{{post.content | truncatechars:500 |safe }}</div></p>
+              <a href="{{post.postslug}}" class="btn btn-primary my-3">Show more</a>
+            </div>
+            </div>
+    </div>
+   
+    {% endfor %}
+    <script>
+      let postview=document.getElementsByClassName("html");
+      console.log(postview);
+      Array.from(postview).forEach((element)=>{
+      element.innerHTML=element.innerText;
+      });
+    </script>
+{% endblock body %}
+
+{% block js %}
+
+{% endblock js %}
